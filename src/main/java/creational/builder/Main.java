@@ -3,23 +3,25 @@ package creational.builder;
 import creational.builder.builder.ProductBuilderA;
 import creational.builder.builder.ProductBuilderB;
 import creational.builder.product.Product;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created on 21.07.2022
- * Study of Builder pattern. Main CLass (Client)
+ * <br>Study of Builder pattern. Main Class (Client)
  * @author Mykola Horkov
- * mykola.horkov@gmail.com
+ * <br>mykola.horkov@gmail.com
  */
+@Slf4j
 public class Main {
 
-    private static String[] productA = {"3", "Product A", "2.05", "Some Parameter A", "215"};
-    private static String[] productB = {"12", "Product B", "22.50", "121200", "50.05"};
+    private static final String[] productA = {"3", "Product A", "2.05", "Some Parameter A", "215"};
+    private static final String[] productB = {"12", "Product B", "22.50", "121200", "50.05"};
 
     public static void main(String[] args) {
         Product prodA = directBuildA(new ProductBuilderA(), productA);
         Product prodB = directBuildB(new ProductBuilderB(), productB);
-        System.out.println("ProdA: " + prodA);
-        System.out.println("ProdB: " + prodB);
+        log.info("ProdA: {}", prodA);
+        log.info("ProdB: {}", prodB);
 
     }
 
