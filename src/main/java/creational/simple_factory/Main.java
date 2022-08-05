@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * Created on 22.07.2022
  * <br>Study of Simple Factory
  * @author Mykola Horkov
- * mykola.horkov@gmail.com
+ * <br>mykola.horkov@gmail.com
  */
 @Slf4j
 public class Main {

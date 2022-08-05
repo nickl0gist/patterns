@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created on 03.08.2022
+ * <br>Study of Prototype design pattern.
  * @author Mykola Horkov
  * <br> mykola.horkov@gmail.com
- * Study of Prototype design pattern.
  */
 @Slf4j
 public class Main {
