@@ -1,7 +1,9 @@
 package creational.abstract_factory;
 
 import creational.abstract_factory.factory.MercedesFactory;
+import creational.abstract_factory.factory.VolkswagenFactory;
 import creational.abstract_factory.vechicle.MercedesVehicle;
+import creational.abstract_factory.vechicle.VolkswagenVehicle;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -22,9 +24,9 @@ public class Main {
         mercedesVehicle.switchGearUp();
         log.info("Mercedes status: {}", mercedesVehicle.status());
 
-        MercedesFactory vwFactory = new MercedesFactory();
+        VolkswagenFactory vwFactory = new VolkswagenFactory();
         vwFactory.assembleVehicle();
-        MercedesVehicle volkswagenVehicle = vwFactory.getVehicle();
+        VolkswagenVehicle volkswagenVehicle = vwFactory.getVehicle();
         log.info("Assembled Vehicle: {}", volkswagenVehicle);
         volkswagenVehicle.start();
         volkswagenVehicle.switchGearUp();
