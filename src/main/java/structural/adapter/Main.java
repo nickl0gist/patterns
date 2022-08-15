@@ -1,9 +1,6 @@
 package structural.adapter;
 
 import lombok.extern.slf4j.Slf4j;
-import structural.adapter.class_adapter.CardDesigner;
-import structural.adapter.class_adapter.Employee;
-import structural.adapter.class_adapter.EmployeeClassAdapter;
 
 /**
  * Created on 15.08.2022
@@ -16,13 +13,24 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /** Using Class/Two-way adapter **/
         EmployeeClassAdapter adapter = new EmployeeClassAdapter();
         populateEmployeeData(adapter); // Expects Employee Type (2-way adapter)
 
         CardDesigner designer = new CardDesigner();
-        String card = designer.designCard(adapter); // Expects Customer type. (2-way adapter)
+        String card1 = designer.designCard(adapter); // Expects Customer type. (2-way adapter)
 
-        log.info("Two-way class adapter: {}", card);
+        log.info("Two-way class adapter: {}", card1);
+        log.info("________________________________________________________");
+
+        /** Using Object Adapter **/
+
+        Employee employee = new Employee();
+        populateEmployeeData(employee);
+
+        EmployeeObjectAdapter objectAdapter = new EmployeeObjectAdapter(employee);
+        String card2 = designer.designCard(objectAdapter);
+        log.info("Object adapter: {}", card2);
     }
 
     private static void populateEmployeeData(Employee employee){

@@ -1,4 +1,4 @@
-package structural.adapter.class_adapter;
+package structural.adapter;
 
 /**
  * Created on 15.08.2022

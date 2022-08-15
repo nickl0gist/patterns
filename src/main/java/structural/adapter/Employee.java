@@ -1,4 +1,4 @@
-package structural.adapter.class_adapter;
+package structural.adapter;
 
 import lombok.Getter;
 import lombok.Setter;
