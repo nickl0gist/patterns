@@ -3,6 +3,7 @@ package behavioral.iterator.spammer;
 import behavioral.iterator.iterators.SocialNetworkIterator;
 import behavioral.iterator.profile.Profile;
 import behavioral.iterator.social_networks.SocialNetwork;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -14,12 +15,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SpamSender {
     public final SocialNetwork network;
-    public SocialNetworkIterator iterator;
+
+    @Getter
+    private SocialNetworkIterator iterator;
 
     public SpamSender(SocialNetwork network) {
         this.network = network;
     }
 
+    /**
+     * Send spam messages to <b>Friends</b> group of given profile E-mail.
+     * @param profileEmail profile e-mail.
+     * @param message text of the spam message.
+     */
     public void sendSpamToFriends(String profileEmail, String message) {
         log.info("Iterating over friends...");
         iterator = network.createFriendsIterator(profileEmail);
@@ -29,6 +37,11 @@ public class SpamSender {
         }
     }
 
+    /**
+     * Send spam messages to <b>Coworkers</b> group of given profile E-mail.
+     * @param profileEmail profile e-mail.
+     * @param message text of the spam message.
+     */
     public void sendSpamToCoworkers(String profileEmail, String message) {
         log.info("Iterating over coworkers...");
         iterator = network.createCoworkersIterator(profileEmail);

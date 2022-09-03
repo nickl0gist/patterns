@@ -13,12 +13,24 @@ import java.util.List;
  * <br> Facebook Iterator implements Iterator interface.
  */
 public class FacebookIterator implements SocialNetworkIterator{
-    private Facebook facebook;
-    private String type;
-    private String email;
+
+    /**
+     * Social network Entity.
+     */
+    private final Facebook facebook;
+
+    /**
+     * Type of contacts to be iterated.
+     */
+    private final String type;
+
+    /**
+     * e-mail of given Profile.
+     */
+    private final String email;
     private int currentPosition = 0;
-    private List<String> emails = new ArrayList<>();
-    private List<Profile> profiles = new ArrayList<>();
+    private final List<String> emails = new ArrayList<>();
+    private final List<Profile> profiles = new ArrayList<>();
 
     public FacebookIterator(Facebook facebook, String type, String email) {
         this.facebook = facebook;
@@ -26,11 +38,14 @@ public class FacebookIterator implements SocialNetworkIterator{
         this.email = email;
     }
 
+    /**
+     * For the first time list of e-mails is empty and collection of e-mail is initiated.
+     */
     private void lazyLoad() {
         if (emails.isEmpty()) {
-            List<String> profiles = facebook.requestProfileFriendsFromFacebook(this.email, this.type);
-            for (String profile : profiles) {
-                this.emails.add(profile);
+            List<String> emailList = facebook.requestProfileFriendsFromFacebook(this.email, this.type);
+            for (String e : emailList) {
+                this.emails.add(e);
                 this.profiles.add(null);
             }
         }
@@ -48,7 +63,11 @@ public class FacebookIterator implements SocialNetworkIterator{
             return null;
         }
 
+        // Obtain friends e-mail from current position of iterator...
         String friendEmail = emails.get(currentPosition);
+
+        // Obtain friends profile from current position of iterator...
+        // if no such profile at the position, find it in network and place in profiles set with current position index.
         Profile friendProfile = profiles.get(currentPosition);
         if (friendProfile == null) {
             friendProfile = facebook.requestProfileFromFacebook(friendEmail);

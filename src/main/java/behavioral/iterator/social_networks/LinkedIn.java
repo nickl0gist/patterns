@@ -15,8 +15,9 @@ import java.util.List;
  * <br> mykola.horkov@gmail.com
  */
 @Slf4j
-public class LinkedIn extends SocialNetworkAbstract{
-    private List<Profile> contacts;
+public class LinkedIn implements SocialNetwork {
+
+    private final List<Profile> contacts;
 
     public LinkedIn(List<Profile> cache) {
         if (cache != null) {

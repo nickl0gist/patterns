@@ -28,25 +28,28 @@ public class Main {
         String choice = scanner.nextLine();
 
         SocialNetwork network;
-        if (choice.equals("2")) {
-            network = new LinkedIn(createTestProfiles());
-        }
-        else {
-            network = new Facebook(createTestProfiles());
-        }
+
+        // Assign network basing on made choice
+        network = choice.equals("2")
+                ? new LinkedIn(createTestProfiles())
+                : new Facebook(createTestProfiles());
 
         SpamSender spammer = new SpamSender(network);
 
-        spammer.sendSpamToFriends("jane.doe@bing.com",
+        spammer.sendSpamToFriends("spiderman@example.com",
                 "Hey! This is Jane's friend Josh. Can you do me a favor and like this post [some_link]?");
 
         spammer.sendSpamToCoworkers("jane.doe@bing.com",
                 "Hey! This is Jane's boss Jason. Anna told me you would be interested in [some_link].");
     }
 
+    /**
+     * Static creation of Profiles.
+     * @return List of Profiles.
+     */
     public static List<Profile> createTestProfiles() {
         List<Profile> data = new ArrayList<>();
-        data.add(new Profile("jane.doe@bing.com", "Jane Doe", "friends:mr.anderson@ya.com", "friends:halkwoman@ebay.com", "coworkers:spiderman@example.com"));
+        data.add(new Profile("jane.doe@bing.com", "Jane Doe", "coworkers:mr.anderson@ya.com", "coworkers:halkwoman@ebay.com", "coworkers:spiderman@example.com"));
         data.add(new Profile("mr.anderson@ya.com", "Mr. Anderson", "friends:jane.doe@bing.com", "coworkers:spiderman@example.com"));
         data.add(new Profile("billy@micro.eu", "Billy", "coworkers:x-men@marvel.net"));
         data.add(new Profile("x-men@marvel.net", "Xavier", "coworkers:billy@micro.eu"));

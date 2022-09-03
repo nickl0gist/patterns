@@ -14,9 +14,9 @@ import java.util.List;
  * <br> mykola.horkov@gmail.com
  */
 @Slf4j
-public class Facebook extends SocialNetworkAbstract{
+public class Facebook implements SocialNetwork {
 
-    private List<Profile> profiles;
+    private final List<Profile> profiles;
 
     public Facebook(List<Profile> cache) {
         if (cache != null) {
@@ -37,7 +37,7 @@ public class Facebook extends SocialNetworkAbstract{
     }
 
     /**
-     * Emulation of network latency of requests to Facebook API.
+     * Obtain user Profile based on it's email and contact type.
      */
     public List<String> requestProfileFriendsFromFacebook(String profileEmail, String contactType) {
         simulateNetworkLatency();
@@ -50,7 +50,7 @@ public class Facebook extends SocialNetworkAbstract{
     }
 
     /**
-     * Finds searched profile from profiles property if exists.
+     * Finds certain profile by it's e-mail from profiles property if exists.
      */
     private Profile findProfile(String profileEmail) {
         for (Profile profile : profiles) {
@@ -61,11 +61,21 @@ public class Facebook extends SocialNetworkAbstract{
         return null;
     }
 
+    /**
+     * Create certain iterator by friends group for social Facebook network for certain Profile.
+     * @param profileEmail email of profile who contacts will be spammed.
+     * @return FacebookIterator for Friends contact type.
+     */
     @Override
     public SocialNetworkIterator createFriendsIterator(String profileEmail) {
         return new FacebookIterator(this, "friends", profileEmail);
     }
 
+    /**
+     * Create certain iterator by Coworkers group for social Facebook network for certain Profile.
+     * @param profileEmail email of profile who contacts will be spammed.
+     * @return FacebookIterator for Coworkers contact type.
+     */
     @Override
     public SocialNetworkIterator createCoworkersIterator(String profileEmail) {
         return new FacebookIterator(this, "coworkers", profileEmail);
